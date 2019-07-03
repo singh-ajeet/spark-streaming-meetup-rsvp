@@ -1,0 +1,1 @@
+Only the bin folder is required to run the integration test.
