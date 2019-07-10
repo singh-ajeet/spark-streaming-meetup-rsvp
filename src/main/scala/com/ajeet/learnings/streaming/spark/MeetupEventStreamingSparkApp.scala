@@ -44,12 +44,11 @@ object MeetupEventStreamingSparkApp extends App {
     Subscribe[String, String](topics, kafkaParams)
   )
     .map(record => RSVPEvent.parse(record.value))
-    //.filter(event => event != null)
     .map(event => {
       if(event == null || event.getVenue == null)
         null
-       else
-       "POINT (" + (event.getVenue().getLon() + "," +  event.getVenue().getLat() + ")")
+      else
+        "POINT (" + (event.getVenue().getLon() + "," +  event.getVenue().getLat() + ")")
     })
 
   //Printing output of each microbatch on console
